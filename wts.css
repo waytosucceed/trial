@@ -1,0 +1,121 @@
+body{
+  text-align: center;
+ }
+ #questiondiv{
+   
+  background-color: white;
+  box-shadow: 10px 10px 30px grey;
+  padding-top:10px;
+  padding-bottom:10px;
+  font-size:25px;
+  font-weight: bold;
+  height:95%;
+  margin-top:10px;
+  align-items: left;
+
+}
+#question{
+  float:left;
+  margin-top:10px;
+  margin-bottom:10px;
+  display: inline;
+  
+}
+
+#subbtn, #nextbtn{
+ width:70%;
+ font-size:25px;
+ margin-bottom: 10px;
+}
+
+  li{
+    list-style-type: none;
+    margin-right:10px;
+  
+  }
+  #result{
+    font-size: 25px;
+  }
+  button{
+    margin:10px;
+    width: 20%;
+  }
+  .menu{
+    text-align:initial;
+    background-color: aquamarine;
+  }
+  .maindiv{
+    background-color: orange;
+    height: 450px;
+ 
+  }
+  #heading{
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode';
+      border:5px solid rgb(87, 201, 239);
+      width: 40%;
+      border-radius:20%;
+      padding:10px;
+  }
+
+  footer{
+    bottom:0;
+    position: fixed;
+    width: 100%
+  }
+
+  #story{
+    font-family: 'Alegreya', serif;
+    background-color: blueviolet;
+    padding: 20px;
+    color: white;
+    font-weight: bold;
+    word-spacing: 5px;
+    border-radius: 10px;
+    font-size: 25px;
+  }
+  #compliment, #compliment1{
+    font-size: 30px;
+  }
+
+  div.scroll{
+    overflow-y: auto;
+    margin-bottom:30px;
+  }
+  input{
+    text-align:center;
+    font-size: 25px;
+    width: 15%
+  }
+  #input1, #input4, #input7, #input10{
+    background-color: orange;
+  }
+  #input2, #input5, #input8, #input11{
+    background-color: rgb(244, 164, 221);
+  }
+
+  #input3, #input6, #input9, #input12{
+    background-color: rgb(97, 186, 208);
+  }
+
+  hr{
+    height:2px;
+    background-color: black;
+  }
+span{
+  font-size: 25px;
+}
+
+
+.imgdiv{
+  margin-top:10px;
+  position: relative;
+  text-align: left;
+  
+}
+
+canvas{
+  border-width:5px;
+  border-style: ridge;
+  border-color: black;
+  margin-top:10px;
+}

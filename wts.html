@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Class Activity1</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+
+  <link rel="stylesheet" href="wts.css">
+  <link rel="icon" type="image/x-icon" href="Logo_last.png">
+</head>
+<body>
+  <audio id="cheers" >
+    <source src="cheers.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="points" src="Points.mp3"></audio>
+  <audio id="fail" src="fail.mp3"></audio>
+<div class="header" style="width:100%; background-color:rgba(255, 255, 255, 0)">
+   <img src="Logo.png" width="7%" style="float:left; margin-top:10px" class="img-responsive">
+   <span> <img src="header.png" width="30%" height="90px"; class="img-responsive"></span>
+</div>
+<br>
+<br>
+  <center>
+    <h1 id="heading">"Squarish Vs Earth" &#128515;</h1>
+    <div class="maindiv">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 imgdiv">
+          <img id ="math_ques" src="MAth Question.jpg" width="90%" height="90%">
+      </div>
+      <div id="questiondiv" class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+        <div id="question"></div>
+        <br><br><br>
+        <div class="menu"><br><ul id="options"></ul></div>
+        <button id="subbtn" class="btn btn-success" onclick="checkAnswer()">Submit Answer</button>
+        <button id="nextbtn" class="btn btn-primary" onclick="newques()" style="display:none">Next</button>
+        <p id="result"></p>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4" id="candiv">
+        <button class="btn btn-info" onclick="clearCanvas()" style="width:90%">Clear Board</button>
+        <br>
+      </div>
+    </div>
+    
+    <script>
+    // Define an array of questions and their options
+    var questions = [
+    
+    {
+      question: "Q1. A triangle has _____ sides",
+      options: ["3", "5", "4", "6"],
+      answer: "3"
+    },
+
+    {
+      question: "Q2. A rectangle has ____ sides and ____ corners",
+      options: ["3, 4", "4, 4", "4, 3", "5, 4"],
+      answer: "4, 4"
+    },
+
+    {
+      question: "Q3. Name the 4 sides of rectangle",
+      options: ["AB, AC, AD, BC", "AB, BC, CD, DA", "BC, BD, DA, BA", "AB, BC, BA, CB"],
+      answer: "AB, BC, CD, DA"
+    },
+
+    
+    {
+      question: "Q4. My book is of _______ shape",
+      options: ["Cylinder", "Cube", "Cuboid", "Sphere"],
+      answer: "Cuboid"
+    },
+
+    {
+      question: "Q5. What is the shape of this chocolate box",
+      options: ["Cone", "Cylinder", "Sphere", "Cube"],
+      answer: "Cube"
+    },
+
+    {
+      question: "Q6. What is the shape of this box",
+      options: ["Sphere", "Cube", "Oval", "Cuboid"],
+      answer: "Cuboid"
+    },
+
+      {
+        question: "Q7. This is my Ludo dice. If I throw this dice what is the chance of getting 1",
+        options: ["1 time", "3 times", "6 times", "I don't know"],
+        answer: "1 time"
+      },
+
+      {
+        question: "Q8. I dont the table of 13. How can we express 13 x 2 with the help of 10's table ",
+        options: ["10 X 2 + 10 X 3", "10 X 2 + 10 X 3 ", "10 X 2 + 3 X 2", "2 X3 + 3 X 2"],
+        answer: "10 X 2 + 3 X 2"
+      },
+
+      {
+        question: "Q9. The Corner of the solid shapes are called faces",
+        options: ["True", "False"],
+        answer: "False"
+      },
+
+      {
+        question: "Q10. __________ of the solid shape is called its face.",
+        options: ["Surface", "Corner", "Edges", "Angle" ],
+        answer: "Surface"
+      },
+
+      {
+        question: "Q11. Edges can be Straight or Curved?",
+        options: ["Straight", "Curved", "Both" ],
+        answer: "Both"
+      },
+
+      {
+        question: "Q12.How many corners a cube has?",
+        options: ["8", "4", "6", "12"],
+        answer: "8"
+      },
+      {
+        question: "Q13. How many corners a cuboid has?",
+        options: ["4", "8", "6", "12"],
+        answer: "8"
+      },
+
+      {
+        question: "Q14. A cuboid has _______ edges",
+        options: ["8", "12", "4", "6"],
+        answer: "12"
+      },
+
+      {
+        question: "Q15. A cube has _______ edges",
+        options: ["8", "12", "4", "6"],
+        answer: "12"
+      },
+
+      {
+        question: "Q16. Which shape has 6 faces",
+        options: ["Square", "Cuboid", "Rectangle", "Hexagon" ],
+        answer: "Cuboid"
+      },
+
+      {
+        question: "Q17. How many cubes are in the picture",
+        options: ["3", "2", "4", "5" ],
+        answer: "4"
+      },
+
+      {
+        question: "Q18. Dylan cut a shape out of a piece of construction paper. The shape had 4 equal sides. Which shape could Dylan have made?",
+        options: ["Square", "Rectangle", "Triangle", "Cube" ],
+        answer: "Square"
+      },
+
+      {
+        question: "Q19. Which shape is this?",
+        options: ["Cube", "Cuboid", "Square", "Rectangle" ],
+        answer: "Cube"
+      },
+
+      {
+        question: "Q20. What is 23 + 30",
+        options: ["53", "63", "60"],
+        answer: "53"
+      },
+
+      {
+        question: "Q21. Is this figure a polygon?",
+        options: ["Yes", "No", "May Be"],
+        answer: "Yes"
+      },
+
+      {
+        question: "Q22. How many sides does this shape has?",
+        options: ["8", "12", "4", "6"],
+        answer: "12"
+      },
+
+      {
+        question: "Q23. How many corners are there in this shape?",
+        options: ["8", "12", "4", "6"],
+        answer: "8"
+      },
+
+      {
+        question: "Q24. Which shape does this box represent",
+        options: ["Cube", "Cuboid", "Square", "Rectangle"],
+        answer: "Cuboid"
+      },
+
+      {
+        question: "Q25. Its the time to go back home. Can you tell me the time.",
+        options: ["12:02", "12:00", "02:00", "02:12"],
+        answer: "02:00"
+      },
+
+
+   
+
+
+      
+      // Add more questions here
+    ];
+
+    
+    //define the array of images
+
+    var img= ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg"]
+    
+    // Get a random question from the array
+
+    var randomQuestion = questions[0];
+    var updatedimage = img[0]
+    document.getElementById("math_ques").src = updatedimage
+    document.getElementById("question").innerHTML = randomQuestion.question;
+    
+    randomQuestion.options.forEach(function(option) {
+      var li = document.createElement("li");
+      li.innerHTML = '<input type="radio" name="answer" style="height:18px; width:18px;" value="' + option + '"> ' + option;
+      document.getElementById("options").appendChild(li);
+    });
+
+// Create a function here like family array project of Byjus to display next question \
+    // from array everytime instead of random question
+    var i=1;
+    var count=questions.length
+    function newques(){
+      if(i==count){
+        document.getElementById("heading").innerHTML = "Thank You...."
+        document.getElementById("math_ques").src = "last.jpg"
+        document.getElementById("question").innerHTML=""
+        document.getElementById("options").innerHTML="Well Done"
+        document.getElementById("cheers").play()
+      document.getElementById("result").innerHTML ="Click on the next button on the top right corner to practice more "
+      document.getElementById("nextbtn").style.display="none"
+      }
+      else{
+
+      document.getElementById("options").innerHTML=""
+      document.getElementById("result").innerHTML =""
+      
+  
+      updatedimage= img[i]
+      document.getElementById("math_ques").src = updatedimage
+
+// Display the question and options on the page
+      randomQuestion = questions[i];    
+    document.getElementById("question").innerHTML = randomQuestion.question;
+    
+    
+    randomQuestion.options.forEach(function(option) {
+      var li = document.createElement("li");
+      li.innerHTML = '<input type="radio" name="answer" style="height:18px; width:18px;" value="' + option + '"> ' + option;
+      document.getElementById("options").appendChild(li);
+    });
+    document.getElementById("subbtn").style.display="inline-block"
+        document.getElementById("nextbtn").style.display="none"
+
+    i++;
+    }
+  }
+    
+    
+    // Check the selected answer against the correct answer
+    function checkAnswer() {
+      var selectedAnswer = document.querySelector('input[name="answer"]:checked').value;
+      if (selectedAnswer === randomQuestion.answer) {
+        document.getElementById("result").innerHTML = "Correct! &#128512" ;
+        document.getElementById("points").play();
+        document.getElementById("subbtn").style.display="none"
+        document.getElementById("nextbtn").style.display="inline-block"
+      } else {
+        document.getElementById("result").innerHTML = "Try Again! &#128526";
+        document.getElementById("fail").play();
+      }
+    }
+
+    
+    function setup() {
+      canvas = createCanvas(350, 390);
+      canvas.parent("candiv")
+      background("white");
+    }
+    
+    function clearCanvas() {
+    
+      background("white");
+    }
+    
+    function draw() {
+    
+      // Set stroke weight to 13
+      strokeWeight(5);
+      // Set stroke color to black
+      stroke(0);
+      // If mouse is pressed, draw line between previous and current mouse positions
+      if (mouseIsPressed) {
+        line(pmouseX, pmouseY, mouseX, mouseY);
+      }
+    }
+    
+
+  </script>
+</center>
+</body>
+</html>
